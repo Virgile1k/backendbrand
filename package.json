@@ -6,7 +6,6 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon babel-node src/server.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js tests/",
     "pretest": "node cleanup.js"
   },
