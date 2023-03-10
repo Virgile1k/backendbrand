@@ -1,0 +1,306 @@
+swagger: "2.0"
+info:
+  title: My Brand APIs swagger Docs
+  version: 1.0
+
+servers:
+  - url: 'https://mybrand-faustin.cyclic.app/'
+    description: Remote server
+  - url: 'https://mybrand-faustin-backend-production.up.railway.app/'
+    description: Remote server2
+
+  - url: 'http://localhost:5000'
+    description: Local server
+
+schemes: [https, http]
+
+paths:
+  #User sign up
+  /api/v1/signup:
+    post:
+      summary: User sign up
+      tags:
+        - Users
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          schema:
+            type: object
+            properties:
+              firstname:
+                type: string
+                required: true
+                description: User first name
+              lastname:
+                type: string
+                required: true
+                description: User last name
+              email:
+                type: string
+                required: true
+                description: User email
+              password:
+                type: string
+                required: true
+                description: User password
+      responses:
+        201:
+          schema:
+            type: object
+        500:
+          description: Something went wrong, try again
+
+  #User login
+  /api/v1/login:
+    post:
+      summary: User login
+      tags:
+        - Users
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                required: true
+                description: User email
+              password:
+                type: string
+                required: true
+                description: User password
+      responses:
+        200:
+          schema:
+            type: object
+        400:
+          description: Invalid user credentials
+
+  #Create blog
+  /api/v1/blogs:
+    post:
+      summary: Create a new blog
+      tags:
+        - Blogs
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: blog
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                required: true
+                description: Blog title
+              image:
+                type: string
+                description: Blog image
+              content:
+                type: string
+                required: true
+                description: Blog content
+      responses:
+        201:
+          schema:
+            type: object
+        401:
+          description: Unauthorized access
+
+    get:
+      summary: Retrieve all blogs
+      tags:
+        - Blogs
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              blogs:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Blog ID
+                    title:
+                      type: string
+                      description: Blog title
+                    image:
+                      type: string
+                      description: Blog image
+                    content:
+                      type: string
+                      description: Blog content
+                    created_at:
+                      type: string
+                      description: Blog creation timestamp
+                    updated_at:
+                      type: string
+                      description: Blog update timestamp
+        401:
+          description: Not authorised to retrieve blogs
+
+  #Update and delete blog
+  /api/v1/blogs/{blogId}:
+    put:
+      summary: Update an existing blog
+      tags:
+        - Blogs
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: blogId
+          type: string
+          required: true
+          description: ID of the blog to update
+        - in: body
+          name: blog
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                description: Blog title
+              image:
+                type: string
+                description: Blog image
+              content:
+                type: string
+                description: Blog content
+      responses:
+        200:
+          schema:
+            type: object
+        401:
+          description: Not authorised to modify blogs
+
+    delete:
+        summary: Delete a blog
+        tags:
+          - Blogs
+        produces:
+          - application/json
+        parameters:
+          - in: path
+            name: blogId
+            type: string
+            required: true
+            description: ID of the blog to delete
+        responses:
+          200:
+            description: Blog deleted successfully
+          401:
+            description: You are not authorized to delete any Blog
+          404:
+            description: Blog not found
+  #Create message
+  /api/v1/message:
+    post:
+      summary: Send a new message
+      tags:
+        - Messages
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: blog
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                required: true
+                description: Blog title
+              image:
+                type: string
+                description: Blog image
+              content:
+                type: string
+                required: true
+                description: Blog content
+      responses:
+        201:
+          schema:
+            type: object
+        400:
+          description: Complete all input field
+
+    get:
+      summary: Retrieve all messages
+      tags:
+        - Messages
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              blogs:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Blog ID
+                    title:
+                      type: string
+                      description: Blog title
+                    image:
+                      type: string
+                      description: Blog image
+                    content:
+                      type: string
+                      description: Blog content
+                    created_at:
+                      type: string
+                      description: message creation timestamp
+
+        401:
+          description: Not authorised to retrieve All messages
+
+  #Update and delete
+  /api/v1/message/{id}:
+    delete:
+      summary: Delete a message
+      tags:
+        - Messages
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: ID of the message to delete
+      responses:
+        200:
+          description: Message deleted successfully
+        401:
+          description: You are not authorized to delete any message
+        404:
+          description: Message not found
