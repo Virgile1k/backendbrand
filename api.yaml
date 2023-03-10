@@ -4,10 +4,8 @@ info:
   version: 1.0
 
 servers:
-  - url: 'https://mybrand-faustin.cyclic.app/'
+  - url: 'https://bored-bull-pantsuit.cyclic.app'
     description: Remote server
-  - url: 'https://mybrand-faustin-backend-production.up.railway.app/'
-    description: Remote server2
 
   - url: 'http://localhost:5000'
     description: Local server
