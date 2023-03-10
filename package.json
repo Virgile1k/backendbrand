@@ -1,5 +1,5 @@
 {
-  "name": "mybrand.faustin.api",
+  "name": "virgilebackend",
   "version": "1.0.0",
   "description": "CRUD",
   "main": "server.js",
@@ -12,7 +12,7 @@
   "jest": {
     "testTimeout": 500000
   },
-  "author": "Faustin",
+  "author": "Virgile",
   "license": "ISC",
   "dependencies": {
     "@babel/cli": "^7.21.0",
