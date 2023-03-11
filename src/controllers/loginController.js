@@ -29,8 +29,9 @@ const loginController = async (req, res) => {
                     secure: true, // I must remember to set this to true in production
                 });
 
-                return res.status(200).json({ message: "Logged in successfully" });
+                return res.status(200).json({ message: "Logged in successfully" ,token:token});
             }
+            c
         }
     } catch (error) {
         console.log(error);
