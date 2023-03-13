@@ -3,15 +3,15 @@ import User from '../model/user.js';
 import errorFunc from '../utils/errorFunc.js';
 
 const signupController = async (req, res) => {
-  const { firstname, lastname, email, password } = req.body;
+  const { email, username, password } = req.body;
   try {
     // hash password
-    const hashedPassword = await bcrypcct.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // create our new user
-    const newUser = await User.create({ firstname, lastname, email, password: hashedPassword });
+    const newUser = await User.create({ email, username, password: hashedPassword });
     res.status(201).json({
-      message: "New User created successfully",
+      message: "Signed up succesfully",
       data: newUser
     });
   } catch (error) {

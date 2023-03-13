@@ -31,7 +31,7 @@ const loginController = async (req, res) => {
 
                 return res.status(200).json({ message: "Logged in successfully" ,token:token});
             }
-            c
+            
         }
     } catch (error) {
         console.log(error);
