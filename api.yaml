@@ -4,7 +4,7 @@ info:
   version: 1.0
 
 servers:
-  - url: 'https://bored-bull-pantsuit.cyclic.app'
+  - url: 'https://uninterested-bear-polo-shirt.cyclic.app/'
     description: Remote server
 
   - url: 'http://localhost:5000'
